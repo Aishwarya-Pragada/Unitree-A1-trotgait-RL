@@ -1,5 +1,5 @@
 from stable_baselines3 import PPO
-from rl_env_stage30 import A1Env
+from rl_env_stage1 import A1Env
 import mujoco.viewer
 import time
 import numpy as np
@@ -7,7 +7,7 @@ import numpy as np
 env = A1Env()
 env.set_cmd_vel(0.30)   # slow — watch trot clearly
 
-model = PPO.load("stage3_trot_1M")
+model = PPO.load("stage1_trot_1M")
 
 obs, _ = env.reset()
 
