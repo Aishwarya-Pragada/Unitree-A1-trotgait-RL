@@ -4,7 +4,7 @@ from stable_baselines3.common.callbacks import (
     BaseCallback
 )
 
-from rl_env_stage30 import A1Env
+from rl_env_stage1 import A1Env
 
 
 class CurriculumCallback(BaseCallback):
@@ -64,7 +64,7 @@ model.learn(
     callback=[checkpoint_callback, curriculum_callback]
 )
 
-model.save("stage3_trot_1M")
+model.save("stage1_trot_1M")
 
-print("Stage 3 training completed.")
-print("Saved to: stage3_trot_1M")
+print("Stage 1 training completed.")
+print("Saved to: stage1_trot_1M")
