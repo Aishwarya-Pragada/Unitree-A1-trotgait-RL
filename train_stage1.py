@@ -25,15 +25,6 @@ class CurriculumCallback(BaseCallback):
 
 env = A1Env()
 
-# =====================================================
-# FRESH PPO
-#
-# obs size is now 51 (added phase sin+cos)
-# Cannot load old weights — fresh start
-# Robot will re-learn standing fast (~100k)
-# then follow phase clock into trot
-# =====================================================
-
 model = PPO(
     "MlpPolicy",
     env,
@@ -52,7 +43,7 @@ model = PPO(
 checkpoint_callback = CheckpointCallback(
     save_freq=100_000,
     save_path="./checkpoints/",
-    name_prefix="stage3_trot"
+    name_prefix="stage1_trot"
 )
 
 curriculum_callback = CurriculumCallback(
