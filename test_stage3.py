@@ -1,5 +1,5 @@
 from stable_baselines3 import PPO
-from rl_env_stage32 import A1Env
+from rl_env_stage3 import A1Env
 import mujoco.viewer
 import time
 import numpy as np
@@ -7,7 +7,7 @@ import numpy as np
 env = A1Env()
 env.set_cmd_vel(0.30)   # matches stage32 fixed cmd_vel
 
-model = PPO.load("stage32_trot_3M")
+model = PPO.load("stage3_trot_3M")
 
 obs, _ = env.reset()
 
