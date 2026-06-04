@@ -26,15 +26,15 @@ class CurriculumCallback(BaseCallback):
 env = A1Env()
 
 
-model = PPO.load("stage3_trot_1M", env=env)
+model = PPO.load("stage1_trot_1M", env=env)
 
-print("Loaded stage3_trot_1M successfully.")
-print("Continuing training with stage31 environment fixes...")
+print("Loaded stage1_trot_1M successfully.")
+print("Continuing training with stage2 environment fixes...")
 
 checkpoint_callback = CheckpointCallback(
     save_freq=100_000,
     save_path="./checkpoints/",
-    name_prefix="stage31_trot"
+    name_prefix="stage2_trot"
 )
 
 curriculum_callback = CurriculumCallback(
