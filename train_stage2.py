@@ -4,7 +4,7 @@ from stable_baselines3.common.callbacks import (
     BaseCallback
 )
 
-from rl_env_stage31 import A1Env
+from rl_env_stage2 import A1Env
 
 
 class CurriculumCallback(BaseCallback):
@@ -25,23 +25,6 @@ class CurriculumCallback(BaseCallback):
 
 env = A1Env()
 
-# =====================================================
-# LOAD stage3_trot_1M and continue training
-#
-# Robot already knows:
-#   - how to stay upright
-#   - basic diagonal trot pattern
-#   - how to move forward
-#
-# Stage 31 fixes being applied on top:
-#   - phase_dt: 0.015 -> 0.10  (fixes bouncing)
-#   - action scale: 0.15 -> 0.30  (fixes timing mismatch)
-#   - coast_penalty: 3.0 -> 1.0  (fixes jerky recovery)
-#   - cmd_vel_max fixed at 0.10  (slow motion only)
-#
-# Robot will start from existing knowledge and refine
-# — expect ep_rew_mean to start HIGHER than stage30
-# =====================================================
 
 model = PPO.load("stage3_trot_1M", env=env)
 
@@ -64,7 +47,7 @@ model.learn(
     reset_num_timesteps=False   # keeps timestep counter continuing from 1M
 )
 
-model.save("stage31_trot_2M")
+model.save("stage2_trot_2M")
 
-print("Stage 31 training completed.")
-print("Saved to: stage31_trot_2M")
+print("Stage 2 training completed.")
+print("Saved to: stage2_trot_2M")
