@@ -4,7 +4,7 @@ from stable_baselines3.common.callbacks import (
     BaseCallback
 )
 
-from rl_env_stage32 import A1Env
+from rl_env_stage3 import A1Env
 
 
 class CurriculumCallback(BaseCallback):
@@ -24,28 +24,6 @@ class CurriculumCallback(BaseCallback):
 
 
 env = A1Env()
-
-# =====================================================
-# LOAD stage31_trot_2M and continue training
-#
-# Robot already knows from stage31:
-#   - stable upright posture
-#   - diagonal trot pattern
-#   - forward motion
-#   - basic yaw control
-#
-# Stage32 adds ONE new fix on top:
-#   - force_symmetry_penalty 2.0
-#     tracks avg forward vel during TROT-A vs TROT-B
-#     penalises if one diagonal generates more
-#     propulsion than the other
-#
-# Root cause being fixed:
-#   one diagonal does all work
-#   → body tips
-#   → abduction joints overcompensate
-#   → yaw rotation appears
-# =====================================================
 
 model = PPO.load("stage31_trot_2M", env=env)
 
@@ -68,7 +46,7 @@ model.learn(
     reset_num_timesteps=False   # continue counter from 2M
 )
 
-model.save("stage32_trot_3M")
+model.save("stage3_trot_3M")
 
-print("Stage 32 training completed.")
-print("Saved to: stage32_trot_3M")
+print("Stage 3 training completed.")
+print("Saved to: stage3_trot_3M")
